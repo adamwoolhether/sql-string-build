@@ -46,6 +46,7 @@ func main() {
 
 }
 
+// To build a SELECT * FROM <table-name> with optional WHERE
 func buildSQL(table string, queries map[string]string) string {
 
 	var b strings.Builder
