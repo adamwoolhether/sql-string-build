@@ -48,6 +48,7 @@ func main() {
 
 // To build a SELECT * FROM <table-name> with optional WHERE
 func buildSQL(table string, queries map[string]string) string {
+	q := "'"
 
 	var b strings.Builder
 	b.WriteString("SELECT * FROM " + table)
@@ -55,7 +56,7 @@ func buildSQL(table string, queries map[string]string) string {
 	if len(queries) > 0 {
 		b.WriteString(" WHERE ")
 		for k, v := range queries {
-			b.WriteString(k+"'"+v+"'"+" AND ")
+			b.WriteString(k+q+v+q+" AND ")
 		}
 		query := strings.TrimRight(b.String(), " AND ")
 		return query
