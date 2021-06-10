@@ -50,16 +50,16 @@ func main() {
 func buildSQL(table string, queries map[string]string) string {
 	q := "'"
 
-	var b strings.Builder
-	b.WriteString("SELECT * FROM " + table)
+	var a, b strings.Builder
+	a.WriteString("SELECT * FROM " + table)
 
 	if len(queries) > 0 {
-		b.WriteString(" WHERE ")
+		a.WriteString(" WHERE ")
 		for k, v := range queries {
-			b.WriteString(k+q+v+q+" AND ")
+			a.WriteString(k+q+v+q+" AND ")
 		}
-		query := strings.TrimRight(b.String(), " AND ")
-		return query
+		b.WriteString(strings.TrimRight(a.String(), " AND "))
+		return b.String()
 	}
-	return b.String()
+	return a.String()
 }
